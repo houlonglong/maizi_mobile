@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<title></title>
+	</head>
+	<style>
+		#div{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			background: rgba(204,255,0,.5);
+			left: 0;
+			top: 0;
+		}
+	</style>
+	<script>
+	
+    document.addEventListener("touchstart",function(e){
+    
+    })
+		window.onload  = function(){
+		var div =document.querySelector('#div')
+		div.addEventListener("touchend",function(e){
+			e.preventDefault()
+			this.style.display = "none"
+		})
+		
+		}
+	</script>
+	<body>
+		<a href="http://www.baidu.com">百度</a>
+		<div id="div">
+			
+		</div>
+	</body>
+</html>

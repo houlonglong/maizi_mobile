@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<title></title>
+	</head>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+	<script>
+	
+
+		window.onload  = function(){
+
+			var box = document.querySelector('#box')
+	  /*
+		     * addEventListener('事件名'callbanck,冒泡捕获)	  
+		     */
+			box.addEventListener('touchstart',function(){
+				console.log(1)
+			})
+			box.addEventListener('touchstart',function(){
+				console.log(2)
+			})
+		
+		}
+	</script>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+</html>

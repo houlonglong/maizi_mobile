@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no" />
+		<title></title>	
+		<link rel="stylesheet/less" type="text/css" href="css/index.less" />
+		<script src="js/less.js"></script>
+	<script>
+ setRem()
+window.addEventListener('orientationchange',setRem)
+	function setRem() {
+		var html = document.querySelector("html");
+		var width = html.getBoundingClientRect().width;
+		html.style.fontSize = width / 16 + "px";
+		
+	}
+	</script>
+	</head>
+	<body>
+		<section class="wrap">
+			<header id="header">
+				<div class="headerC">
+					 <h1>
+					 	<a href="#">
+					 		<img src="img/logo.png"/>
+					 	</a>
+					 </h1>	
+					 <a href="javascript:;" id="menuBtn" class="menuBtnClose"></a>
+					 <nav id="btns">
+					 	<a href="" class="serchBtn">搜索</a>
+				 		<a href="">登录</a>
+				 		<a href="">注册</a>
+					 </nav>
+				</div>
+				 <form action="" class="search">
+			    	<input type="search" name=""  placeholder="请输入搜索内容" />
+			    	<input type="submit" name="" id="" value="搜索" />
+			    </form>
+			    <ul id="nav">
+                    <li><a href="http://www.yinyuetai.com" target="_blank">首页</a></li>
+                    <li><a href="/mv">MV</a></li>
+                    <li><a href="/pl">悦单</a></li>
+                    <li><a href="/vchart">V榜</a></li>
+                    <li><a href="/stage">音悦stage</a></li>
+                    <li><a href="http://shop.m.yinyuetai.com">商城</a></li>
+                    <li><a href="/program">节目</a></li>
+                    <li><a href="/wapfan">饭团</a></li>
+                    <li><a href="http://news.yinyuetai.com/" target="_blank">资讯</a></li>
+                    <li><a href="http://i.yinyuetai.com" target="_blank">我的家</a></li>
+                    <li><a href="http://m.yinyuetai.com/apps/mobile" target="_blank">APP下载</a></li>
+                    <li><a href="http://m.yinyuetai.com/apps" target="_blank">热门应用</a></li>
+                </ul>
+			</header>
+			<div class="content">
+				<nav id="navScroll">
+					<ul id="navs">
+					 <li class="active"><a  target="_blank">首页</a></li>
+                    <li><a >MV</a></li>
+                    <li><a href="/pl">悦单</a></li>
+                    <li><a href="/vchart">V榜</a></li>
+                    <li><a href="/stage">音悦stage</a></li>
+                    <li><a href="http://shop.m.yinyuetai.com">商城</a></li>
+                    <li><a href="/program">节目</a></li>
+                    <li><a href="/wapfan">饭团</a></li>
+                    <li><a href="http://news.yinyuetai.com/" target="_blank">资讯</a></li>
+                    <li><a href="http://i.yinyuetai.com" target="_blank">我的家</a></li>
+                    <li><a href="http://m.yinyuetai.com/apps/mobile" target="_blank">APP下载</a></li>
+                    <li><a href="http://m.yinyuetai.com/apps" target="_blank">热门应用</a></li>
+					</ul>
+				</nav>
+				<div id="Pictap">
+					<ul id="Piclist">
+						<li>
+							<a href="#">
+						    	<img src="img/1.jpg" />
+						    </a>
+						</li>
+						<li>
+							<a href="#">
+						    	<img src="img/2.jpg" />
+						    </a>
+						</li>
+						<li>
+							<a href="#">
+						    	<img src="img/3.jpg" />
+						    </a>
+						</li>
+						<li>
+							<a href="#">
+						    	<img src="img/4.jpg" />
+						    </a>
+						</li>
+						
+					</ul>
+					<nav id="Picnav">
+						<span class="active"></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</nav>
+			</div>
+		</section>
+	</body>
+</html>

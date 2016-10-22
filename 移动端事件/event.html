@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<title></title>
+	</head>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+	<script>
+	
+    document.addEventListener("touchstart",function(e){
+    	e.preventDefault()
+    })
+		window.onload  = function(){
+
+			var box = document.querySelector('#box')
+			var div = document.querySelector('#div')
+	  /*
+		     * addEventListener('事件名'callbanck,冒泡捕获)	  
+		     */
+		    
+		    div.addEventListener('touchstart',function(e){
+		     e.stopPropagation()
+		    },false)
+		    	
+			
+			box.addEventListener('touchstart',function(e){
+				console.log(e)
+			})
+			
+		
+		}
+	</script>
+	<body>
+		<div id="div">
+			激活码 1324
+		</div>
+		<div id="box">
+			大的撒打算  大的萨达撒撒的撒
+		</div>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p><p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p><p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p><p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+		<p>大的撒打算  大的萨达撒撒的撒</p>
+	</body>
+</html>

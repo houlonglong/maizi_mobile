@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<title></title>
+	</head>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+	<script>
+		window.onload  = function(){
+			var box = document.querySelector('#box')
+		    /*
+		     * touchstart 手指触摸 == mouserdown
+		     * touchend 手指抬起 == mouseup
+		     * ontouchmove 手指移动 == mouseup
+		     */
+			box.ontouchstart = function(){
+					this.style.background = "blue"
+			}
+			box.ontouchend = function(){
+					this.style.background = "red"
+			}
+			box.ontouchmove = function(){
+					console.log("3")
+			}
+		}
+	</script>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<title></title>
+	</head>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+		#box{
+			width: 200px;
+			height: 200px;
+			background: red;
+		}
+	</style>
+	<script>
+	
+	/* touches  当前屏幕的手指列表
+	 * targetTouches 当前的元素的手指列表
+	 * changedTouches 触发当前事件的手指列表
+	 * 
+	 * */
+		window.onload = function(){
+			var box = document.querySelector('#box');
+			box.addEventListener("touchend",function(e){
+				console.log(e.touches)
+			})
+		}
+	</script>
+	<body>
+		<div id="box">
+			
+		</div>
+	</body>
+</html>
