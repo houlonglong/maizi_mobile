@@ -6,6 +6,7 @@
 		<title></title>	
 		<link rel="stylesheet/less" type="text/css" href="css/index.less" />
 		<script src="js/less.js"></script>
+		<script type="text/javascript" src="js/transfrom.js" ></script>>
 	<script>
  setRem()
 window.addEventListener('orientationchange',setRem)
@@ -73,22 +74,22 @@ window.addEventListener('orientationchange',setRem)
 					<ul id="Piclist">
 						<li>
 							<a href="#">
-						    	<img src="img/1.jpg" />
+						    	<img src="img/img1.jpg" />
 						    </a>
 						</li>
 						<li>
 							<a href="#">
-						    	<img src="img/2.jpg" />
+						    	<img src="img/img2.jpg" />
 						    </a>
 						</li>
 						<li>
 							<a href="#">
-						    	<img src="img/3.jpg" />
+						    	<img src="img/img3.jpg" />
 						    </a>
 						</li>
 						<li>
 							<a href="#">
-						    	<img src="img/4.jpg" />
+						    	<img src="img/img4.jpg" />
 						    </a>
 						</li>
 						
@@ -103,4 +104,124 @@ window.addEventListener('orientationchange',setRem)
 			</div>
 		</section>
 	</body>
+	<script>
+	 /*
+	  * 顶部导航切换
+	  */
+		navShow()
+		function navShow(){
+			var btn = document.querySelector('#menuBtn')
+			var nav = document.querySelector('#nav')
+			btn.addEventListener('touchstart',function(e){
+				if(btn.className == "menuBtnClose") {
+				btn.className = "menuBtnShow";
+				nav.style.display = "block";
+			} else {
+				btn.className = "menuBtnClose";
+				nav.style.display = "none";
+			}
+			e.stopPropagation();
+			});
+			nav.addEventListener('touchstart',function(e){
+				e.stopPropagation();
+			})
+			document.addEventListener('touchstart',function(e){
+					console.log(btn.className)
+				if(btn.className == "menuBtnShow") {
+					btn.className = "menuBtnClose";
+					nav.style.display = "none";		
+				}
+			})
+		}
+		/*
+		 * 轮播图
+		 */
+		scrollPic()
+		function scrollPic(){
+			var wrap = document.querySelector("#Pictap");
+			var list = document.querySelector("#Piclist");
+			list.innerHTML += list.innerHTML;
+			var lis = document.querySelectorAll("#Piclist li");
+			
+			var css = document.createElement('style');
+			var nav = document.querySelectorAll("#Picnav span");
+			var style = "#wrap{height:"+ lis[0].offsetHeight+"px}";
+			
+			var timer = 0;
+			style+="#Piclist{width:"+lis.length+"00%}";
+			style+="#Piclist li{width:"+(1/lis.length*100)+"%}"
+			css.innerHTML+= style;
+			document.head.appendChild(css);
+			var startPoint = 0;
+			var startX = 0;
+			var now = 0;
+			cssTransform(list,"translateX",0);	
+//			auto()	
+			wrap.addEventListener(
+				"touchstart",
+				function(e) {
+					clearInterval(timer);
+					list.style.transition = "none";
+					var translateX = cssTransform(list,"translateX");
+					console.log()
+//					now = Math.round(-translateX / wrap.offsetWidth);
+					if(now == 0) {
+						now = nav.length;
+					}
+					if(now == lis.length-1) {
+						now = nav.length-1;
+					}
+//					cssTransform(list,"translateX",-now * wrap.offsetWidth);
+					startPoint = e.changedTouches[0];
+					startX = cssTransform(list,"translateX");
+					isMove = true;
+					isFirst = true;
+			}
+	);
+			wrap.addEventListener(
+					"touchmove",
+					function(e) {
+						var nowPoint = e.changedTouches[0].pageX;
+						var dis = nowPoint - startPoint;
+						cssTransform(list,"translateX",startX + dis);
+					}
+				);
+			// getcomputedstyle 获取计算后的样式
+			wrap.addEventListener(
+				"touchend",
+				function(e) {
+					var translateX =cssTransform(list,'translateX')
+					now = Math.round(-translateX / wrap.offsetWidth);
+					tab()
+//					auto()
+					
+				}
+			);
+			function auto(){
+				clearInterval(timer)
+				timer = setInterval(function(){
+						if(now == lis.length -1){
+							now = nav.length -1
+					}
+					list.style.transition = 'none'
+					cssTransform(list,'translateX',-now * wrap.offsetWidth)	
+					setTimeout(function(){
+							 now++
+							 tab()
+					},30)
+				
+				
+				},2000)
+			}
+			function tab(){
+					list.style.transition =".5s"
+					cssTransform(list,'translateX',-now * wrap.offsetWidth)
+					for(var i = 0 ; i < nav.length; i++) {
+						nav[i].className = "";
+					}
+					nav[now%nav.length].className = "active";
+			}
+
+		}
+	</script>
 </html>
