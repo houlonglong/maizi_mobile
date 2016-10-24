@@ -6,7 +6,7 @@
 		<title></title>	
 		<link rel="stylesheet/less" type="text/css" href="css/index.less" />
 		<script src="js/less.js"></script>
-		<script type="text/javascript" src="js/transfrom.js" ></script>>
+		<script type="text/javascript" src="js/transform.js" ></script>>
 	<script>
  setRem()
 window.addEventListener('orientationchange',setRem)
@@ -109,6 +109,7 @@ window.addEventListener('orientationchange',setRem)
 	  * 顶部导航切换
 	  */
 		navShow()
+		scrollPic()
 		function navShow(){
 			var btn = document.querySelector('#menuBtn')
 			var nav = document.querySelector('#nav')
@@ -125,8 +126,7 @@ window.addEventListener('orientationchange',setRem)
 			nav.addEventListener('touchstart',function(e){
 				e.stopPropagation();
 			})
-			document.addEventListener('touchstart',function(e){
-					console.log(btn.className)
+			document.addEventListener('touchstart',function(e){	
 				if(btn.className == "menuBtnShow") {
 					btn.className = "menuBtnClose";
 					nav.style.display = "none";		
@@ -136,17 +136,15 @@ window.addEventListener('orientationchange',setRem)
 		/*
 		 * 轮播图
 		 */
-		scrollPic()
+	
 		function scrollPic(){
 			var wrap = document.querySelector("#Pictap");
 			var list = document.querySelector("#Piclist");
 			list.innerHTML += list.innerHTML;
 			var lis = document.querySelectorAll("#Piclist li");
-			
 			var css = document.createElement('style');
 			var nav = document.querySelectorAll("#Picnav span");
 			var style = "#wrap{height:"+ lis[0].offsetHeight+"px}";
-			
 			var timer = 0;
 			style+="#Piclist{width:"+lis.length+"00%}";
 			style+="#Piclist li{width:"+(1/lis.length*100)+"%}"
@@ -154,30 +152,28 @@ window.addEventListener('orientationchange',setRem)
 			document.head.appendChild(css);
 			var startPoint = 0;
 			var startX = 0;
-			var now = 0;
-			cssTransform(list,"translateX",0);	
+			var timer = 0;
+			var now = 0
+			cssTransform(list,"translateX",0)
 //			auto()	
 			wrap.addEventListener(
 				"touchstart",
 				function(e) {
 					clearInterval(timer);
-					list.style.transition = "none";
-					var translateX = cssTransform(list,"translateX");
-					console.log()
-//					now = Math.round(-translateX / wrap.offsetWidth);
-					if(now == 0) {
-						now = nav.length;
+					list.style.transition ="none"
+					var translateX =cssTransform(list,'translateX')
+				    now = Math.round(-translateX / wrap.offsetWidth);
+					if(now == 0){
+						now = nav.length
 					}
-					if(now == lis.length-1) {
-						now = nav.length-1;
+					if(now == lis.length -1){
+							now = nav.length -1
 					}
-//					cssTransform(list,"translateX",-now * wrap.offsetWidth);
-					startPoint = e.changedTouches[0];
-					startX = cssTransform(list,"translateX");
-					isMove = true;
-					isFirst = true;
-			}
-	);
+					cssTransform(list,'translateX',-now * wrap.offsetWidth)
+					startPoint = e.changedTouches[0].pageX;
+					startX = cssTransform(list,"translateX")
+				}
+			);
 			wrap.addEventListener(
 					"touchmove",
 					function(e) {
