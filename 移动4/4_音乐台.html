@@ -58,16 +58,16 @@ window.addEventListener('orientationchange',setRem)
 					<ul id="navs">
 					 <li class="active"><a  target="_blank">首页</a></li>
                     <li><a >MV</a></li>
-                    <li><a href="/pl">悦单</a></li>
-                    <li><a href="/vchart">V榜</a></li>
-                    <li><a href="/stage">音悦stage</a></li>
-                    <li><a href="http://shop.m.yinyuetai.com">商城</a></li>
-                    <li><a href="/program">节目</a></li>
-                    <li><a href="/wapfan">饭团</a></li>
-                    <li><a href="http://news.yinyuetai.com/" target="_blank">资讯</a></li>
-                    <li><a href="http://i.yinyuetai.com" target="_blank">我的家</a></li>
-                    <li><a href="http://m.yinyuetai.com/apps/mobile" target="_blank">APP下载</a></li>
-                    <li><a href="http://m.yinyuetai.com/apps" target="_blank">热门应用</a></li>
+                    <li><a >悦单</a></li>
+                    <li><a >V榜</a></li>
+                    <li><a >音悦stage</a></li>
+                    <li><a >商城</a></li>
+                    <li><a >节目</a></li>
+                    <li><a >饭团</a></li>
+                    <li><a target="_blank">资讯</a></li>
+                    <li><a target="_blank">我的家</a></li>
+                    <li><a target="_blank">APP下载</a></li>
+                    <li><a target="_blank">热门应用</a></li>
 					</ul>
 				</nav>
 				<div id="Pictap">
@@ -99,7 +99,7 @@ window.addEventListener('orientationchange',setRem)
 						<span></span>
 						<span></span>
 						<span></span>
-						<span></span>
+					
 					</nav>
 			</div>
 		</section>
@@ -153,9 +153,13 @@ window.addEventListener('orientationchange',setRem)
 			var startPoint = 0;
 			var startX = 0;
 			var timer = 0;
-			var now = 0
+			var now = 0;
+			var isMore =true;
+			// 用户来回滑动
+			var isFirst = true;
 			cssTransform(list,"translateX",0)
-//			auto()	
+			//自动播放
+			auto()	
 			wrap.addEventListener(
 				"touchstart",
 				function(e) {
@@ -165,21 +169,36 @@ window.addEventListener('orientationchange',setRem)
 				    now = Math.round(-translateX / wrap.offsetWidth);
 					if(now == 0){
 						now = nav.length
+						//alert(now)
 					}
 					if(now == lis.length -1){
 							now = nav.length -1
 					}
-					cssTransform(list,'translateX',-now * wrap.offsetWidth)
-					startPoint = e.changedTouches[0].pageX;
+					cssTransform(list,'translateX', -now * wrap.offsetWidth)
+					startPoint = e.changedTouches[0];
 					startX = cssTransform(list,"translateX")
+					isMore =true
 				}
 			);
 			wrap.addEventListener(
 					"touchmove",
 					function(e) {
-						var nowPoint = e.changedTouches[0].pageX;
-						var dis = nowPoint - startPoint;
-						cssTransform(list,"translateX",startX + dis);
+						if(!isMore){
+							return 
+						}
+						var nowPoint = e.changedTouches[0];
+						var disX = nowPoint.pageX - startPoint.pageX;
+						var disY = nowPoint.pageY - startPoint.pageY;
+						if(isFirst){
+							if(Math.abs(disY) > Math.abs(disX)) {
+								isMore =false ;
+							}
+							isFirst = false ;
+						}
+						if(isMore){
+							cssTransform(list,"translateX",startX + disX);
+						}
+						
 					}
 				);
 			// getcomputedstyle 获取计算后的样式
@@ -189,7 +208,7 @@ window.addEventListener('orientationchange',setRem)
 					var translateX =cssTransform(list,'translateX')
 					now = Math.round(-translateX / wrap.offsetWidth);
 					tab()
-//					auto()
+					auto()
 					
 				}
 			);
@@ -218,6 +237,53 @@ window.addEventListener('orientationchange',setRem)
 					nav[now%nav.length].className = "active";
 			}
 
+		}
+	
+	
+		/*
+		 * 导航滑动
+		 */
+		navSwipe()
+		function navSwipe(){
+			var navScroll = document.querySelector('#navScroll');
+			var navs = document.querySelector('#navs');
+			//手指初始坐标
+			var startPoint = 0;
+			//元素初始坐标
+			var startX =0;
+			//获取超出的距离
+			var minX = navScroll.clientWidth - navs.offsetWidth
+			 //系数
+			var step = 1;
+			navScroll.addEventListener('touchstart',function(e){
+				startPoint = e.changedTouches[0].pageX;	
+				startX = cssTransform(navs,'translateX');
+			})
+			
+			
+			navScroll.addEventListener('touchmove',function(e){
+			   //拿到当前手指的坐标
+			   var nowPoint = e.changedTouches[0].pageX;
+			   //计算出来差值
+			   var dis = nowPoint - startPoint;
+			   var left =  startX + dis ;
+			   if(left > 0){
+			   		step = 1-left /  navScroll.clientWidth
+			   		//根据超出的长度计算系数的大小，超出的越大，系数越小
+			   		left = parseInt(left * step) 
+			   		console.log(left)
+			   }
+			   if(left < minX){
+			   	 //计算右侧超出多少
+			   	 var over = minX - left;
+			   	 step = 1-over /  navScroll.clientWidth;
+			   	 over = parseInt(over * step);
+			   	 left = minX - over
+			   }
+			 
+			   cssTransform(navs,'translateX', left);
+				
+			})
 		}
 	</script>
 </html>
